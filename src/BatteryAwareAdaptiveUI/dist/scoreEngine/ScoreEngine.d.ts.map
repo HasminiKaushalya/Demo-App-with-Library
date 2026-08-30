@@ -1,0 +1,1 @@
+{"version":3,"file":"ScoreEngine.d.ts","sourceRoot":"","sources":["../../src/scoreEngine/ScoreEngine.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,WAAW,EAAE,MAAM,yBAAyB,CAAC;AAGtD,oBAAY,YAAY;IACtB,WAAW,gBAAgB;IAC3B,QAAQ,aAAa;IACrB,WAAW,gBAAgB;IAC3B,WAAW,gBAAgB;CAC5B;AAED,qBAAa,WAAW;IAEtB,MAAM,CAAC,aAAa,CAAC,WAAW,EAAE,WAAW,GAAG,YAAY;CA2B7D"}

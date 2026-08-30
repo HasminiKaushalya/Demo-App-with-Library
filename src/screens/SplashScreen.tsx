@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 import { Colors } from '../theme/colors';
 
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';

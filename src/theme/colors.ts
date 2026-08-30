@@ -40,12 +40,12 @@ export const Colors = {
   info: '#53B8FF',
   infoSoft: 'rgba(83,184,255,0.18)',
 
-  accentGradient: ['#7C5CFF', '#A855F7', '#FF5FB2'] as const,
-  glassGradient: ['rgba(255,255,255,0.14)', 'rgba(255,255,255,0.06)'] as const,
-  heroGradient: ['#6D5CFF', '#A855F7', '#FF5FB2'] as const,
-  tealGradient: ['#00C2FF', '#4FD1FF', '#31D0AA'] as const,
-  orangeGradient: ['#FF9F5A', '#FFB347', '#FFD76A'] as const,
-  darkGradient: ['#0B1020', '#11182E', '#18233F'] as const,
+  accentGradient: ['#7C5CFF', '#A855F7', '#FF5FB2'],
+  glassGradient: ['rgba(255,255,255,0.14)', 'rgba(255,255,255,0.06)'],
+  heroGradient: ['#6D5CFF', '#A855F7', '#FF5FB2'],
+  tealGradient: ['#00C2FF', '#4FD1FF', '#31D0AA'],
+  orangeGradient: ['#FF9F5A', '#FFB347', '#FFD76A'],
+  darkGradient: ['#0B1020', '#11182E', '#18233F'],
 
   categories: {
     engineering: '#53B8FF',

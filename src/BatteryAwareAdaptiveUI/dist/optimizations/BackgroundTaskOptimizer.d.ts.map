@@ -1,0 +1,1 @@
+{"version":3,"file":"BackgroundTaskOptimizer.d.ts","sourceRoot":"","sources":["../../src/optimizations/BackgroundTaskOptimizer.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,MAAM,4BAA4B,CAAC;AAE1D,MAAM,WAAW,sBAAsB;IACrC,WAAW,EAAE,OAAO,CAAC;IACrB,QAAQ,EAAE,MAAM,CAAC;CAClB;AAED,qBAAa,uBAAuB;IAElC,MAAM,CAAC,WAAW,CAAC,IAAI,EAAE,YAAY,GAAG,sBAAsB;CAmC/D"}

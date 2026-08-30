@@ -1,0 +1,60 @@
+{
+  "name": "battery-aware-adaptive-ui",
+  "version": "0.1.0",
+  "description": "A React Native library for real-time battery-aware UI optimization using an Adaptive Battery Score.",
+  "license": "MIT",
+
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "react-native": "dist/index.js",
+
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint .",
+    "clean": "rimraf dist"
+  },
+
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.76.0"
+  },
+
+  "dependencies": {
+    "react-native-safe-area-context": "^5.5.2"
+  },
+
+  "devDependencies": {
+    "@babel/runtime": "^7.26.0",
+    "@react-native/typescript-config": "0.76.9",
+    "@types/jest": "^29.5.14",
+    "@types/react": "18.3.12",
+    "@types/react-native": "0.72.8",
+    "@types/react-test-renderer": "18.3.0",
+    "jest": "^29.6.3",
+    "react": "18.3.1",
+    "react-native": "0.76.9",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.3"
+  },
+
+  "keywords": [
+    "react-native",
+    "battery",
+    "adaptive-ui",
+    "performance",
+    "energy-saving",
+    "battery-optimization"
+  ],
+
+  "repository": {
+    "type": "git",
+    "url": "YOUR_GITHUB_URL"
+  }
+}

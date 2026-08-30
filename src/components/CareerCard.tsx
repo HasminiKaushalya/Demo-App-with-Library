@@ -2,18 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import GlassCard from './GlassCard';
 import { Colors } from '../theme/colors';
-
-type Career = {
-  title: string;
-  description: string;
-  level: string;
-  skills: string[];
-  duration: string;
-  demand: number;
-  salaryRange: string;
-  emoji: string;
-  color: string;
-};
+import { Career } from '../services/careerService';
 
 type Props = {
   career: Career;

@@ -1,0 +1,9 @@
+export { AnimationOptimizer } from "./AnimationOptimizer";
+export { ImageOptimizer } from "./ImageOptimizer";
+export { VideoOptimizer } from "./VideoOptimizer";
+export { ApiPollingOptimizer } from "./ApiPollingOptimizer";
+export { BackgroundTaskOptimizer } from "./BackgroundTaskOptimizer";
+export { RenderingOptimizer } from "./RenderingOptimizer";
+export { ThemeOptimizer } from "./ThemeOptimizer";
+export { ColorPaletteOptimizer } from "./ColorPaletteOptimizer";
+export { OptimizationManager } from "./OptimizationManager";

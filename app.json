@@ -1,25 +1,4 @@
 {
-  "expo": {
-    "name": "demo-app",
-    "slug": "demo-app",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "scheme": "demoapp",
-    "userInterfaceStyle": "automatic",
-    "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE"
-      },
-      "predictiveBackGestureEnabled": false
-    },
-    "plugins": [
-      [
-        "expo-splash-screen",
-        {
-          "backgroundColor": "#208AEF"
-        }
-      ],
-      "expo-asset"
-    ]
-  }
+  "name": "CareerPlusDemo",
+  "displayName": "CareerPlus"
 }

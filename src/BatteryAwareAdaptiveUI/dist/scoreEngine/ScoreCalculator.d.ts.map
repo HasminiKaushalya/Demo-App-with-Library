@@ -1,0 +1,1 @@
+{"version":3,"file":"ScoreCalculator.d.ts","sourceRoot":"","sources":["../../src/scoreEngine/ScoreCalculator.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAiB,MAAM,yBAAyB,CAAC;AAGrE,qBAAa,eAAe;IAE1B,MAAM,CAAC,SAAS,CAAC,IAAI,EAAE,WAAW,GAAG,MAAM;CAmH5C"}

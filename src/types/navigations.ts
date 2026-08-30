@@ -1,22 +1,16 @@
-export type Job = {
-  id: number;
-  company: string;
-  position: string;
-  location: string;
-  salary: string;
-  type: string;
-  rating: number;
-  applicants: number;
-  tags: string[];
-  postedDays: number;
-  isSaved?: boolean;
-  isFeatured?: boolean;
-  color: string;
-};
+import { Career } from "../services/careerService";
+import { Job } from "../services/jobService";
 
-// Add this 👇
 export type RootStackParamList = {
   Splash: undefined;
   Auth: undefined;
-  // add more screens as you build them
+  HomeChoice: undefined;
+  ExploreCareers: undefined;
+  CareerDiscovery: { career?: Career } | undefined;
+  FindJobs: undefined;
+  JobDetails: { job: Job };
+  SavedJobs: undefined;
+  Recommendation: undefined;
+  Profile: undefined;
+  BatteryAdaptiveDemo: undefined;
 };

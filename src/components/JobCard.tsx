@@ -2,22 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import GlassCard from './GlassCard';
 import { Colors } from '../theme/colors';
-
-type Job = {
-  id?: number | string;
-  company: string;
-  position: string;
-  type: 'Full-time' | 'Contract' | 'Part-time';
-  rating: number;
-  applicants: number;
-  tags: string[];
-  location: string;
-  salary: string;
-  postedDays: number;
-  color: string;
-  isSaved?: boolean;
-  isFeatured?: boolean;
-};
+import { Job } from '../services/jobService';
 
 type Props = {
   job: Job;

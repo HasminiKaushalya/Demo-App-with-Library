@@ -1,0 +1,1 @@
+//# sourceMappingURL=AdaptiveModeManager.d.ts.map

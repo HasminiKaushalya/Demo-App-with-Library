@@ -1,0 +1,1 @@
+//# sourceMappingURL=ColorPaletteManager.d.ts.map

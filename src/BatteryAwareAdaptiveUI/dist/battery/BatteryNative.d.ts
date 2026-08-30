@@ -1,0 +1,1 @@
+//# sourceMappingURL=BatteryNative.d.ts.map
