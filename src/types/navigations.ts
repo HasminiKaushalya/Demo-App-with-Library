@@ -13,4 +13,5 @@ export type RootStackParamList = {
   Recommendation: undefined;
   Profile: undefined;
   BatteryAdaptiveDemo: undefined;
+  WebView: undefined;
 };

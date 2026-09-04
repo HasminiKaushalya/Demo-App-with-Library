@@ -1,32 +1,80 @@
-﻿import React, { useState } from "react";
+﻿import React, { useRef, useState } from "react";
+import { Animated } from "react-native";
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
-import { ABSController, useAdaptiveContext } from "battery-aware-adaptive-ui";
+import {
+  ABSController,
+  useAdaptiveContext,
+  AdaptiveImage,
+  AdaptivePermissionManager,
+} from "battery-aware-adaptive-ui";
+
 
 const BatteryAdaptiveDemoScreen = () => {
+  const animationValue = useRef(new Animated.Value(0)).current;
   const { batteryInfo, score, mode, settings, loading, error, refresh } =
     useAdaptiveContext();
 
   // Local state to trigger re-render after simulation changes
-  const [simVersion, setSimVersion] = useState(0);
 
-  const simulateABS = async (value: number) => {
-    ABSController.setABS(value);
-    setSimVersion(v => v + 1);
-    await refresh();
-  };
 
-  const clearSimulation = async () => {
-    ABSController.clearABS();
-    setSimVersion(v => v + 1);
-    await refresh();
-  };
+  
+  const simulateABS = async (value:number)=>{
+
+
+  ABSController.setABS(value);
+
+
+  if(value === 90){
+
+    await AdaptivePermissionManager.requestPermission();
+
+  }
+
+
+  await refresh();
+
+};
+  
+  
+  
+
+  
+  
+  const clearSimulation = async()=>{
+
+  ABSController.clearABS();
+
+  await refresh();
+
+};
+  
+  const runDemoAnimation = () => {
+
+  if (!settings?.animation?.enabled) {
+    return;
+  }
+
+
+  animationValue.setValue(0);
+
+
+  Animated.timing(
+    animationValue,
+    {
+      toValue:1,
+      duration: settings.animation.duration,
+      useNativeDriver:true,
+    }
+  ).start();
+
+};
 
   // Read simulation state at render time (ABSController is synchronous)
   const isSimulating = ABSController.isSimulationEnabled();
@@ -69,7 +117,9 @@ const BatteryAdaptiveDemoScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Battery Adaptive Demo</Text>
-      <Text style={styles.subtitle}>BatteryAwareAdaptiveUI — Research Evidence</Text>
+      <Text style={styles.subtitle}>
+        BatteryAwareAdaptiveUI — Research Evidence
+      </Text>
 
       {/* Simulation active banner */}
       {isSimulating && (
@@ -89,9 +139,7 @@ const BatteryAdaptiveDemoScreen = () => {
         </Text>
 
         <Text style={styles.label}>Adaptive Mode</Text>
-        <Text style={[styles.value, styles.modeValue]}>
-          {mode ?? "N/A"}
-        </Text>
+        <Text style={[styles.value, styles.modeValue]}>{mode ?? "N/A"}</Text>
       </View>
 
       {/* ── Device Battery ── */}
@@ -109,21 +157,27 @@ const BatteryAdaptiveDemoScreen = () => {
 
         <View style={styles.rowWrap}>
           <Text style={styles.rowLabel}>Charging</Text>
-          <Text style={styles.rowVal}>{batteryInfo?.chargingStatus ?? "N/A"}</Text>
+          <Text style={styles.rowVal}>
+            {batteryInfo?.chargingStatus ?? "N/A"}
+          </Text>
         </View>
 
         <View style={styles.rowWrap}>
           <Text style={styles.rowLabel}>Power Save</Text>
           <Text style={styles.rowVal}>
             {batteryInfo != null
-              ? batteryInfo.powerSaveMode ? "ON" : "OFF"
+              ? batteryInfo.powerSaveMode
+                ? "ON"
+                : "OFF"
               : "N/A"}
           </Text>
         </View>
 
         <View style={styles.rowWrap}>
           <Text style={styles.rowLabel}>Thermal Status</Text>
-          <Text style={styles.rowVal}>{batteryInfo?.thermalStatus ?? "N/A"}</Text>
+          <Text style={styles.rowVal}>
+            {batteryInfo?.thermalStatus ?? "N/A"}
+          </Text>
         </View>
 
         <View style={styles.rowWrap}>
@@ -147,26 +201,22 @@ const BatteryAdaptiveDemoScreen = () => {
 
         <View style={styles.rowWrap}>
           <Text style={styles.rowLabel}>Color Palette</Text>
-          <Text style={styles.rowVal}>{settings?.colorPalette?.palette ?? "N/A"}</Text>
-        </View>
-
-        <View style={styles.rowWrap}>
-          <Text style={styles.rowLabel}>Animation</Text>
           <Text style={styles.rowVal}>
-            {settings?.animation != null
-              ? settings.animation.enabled ? "ON" : "OFF"
-              : "N/A"}
+            {settings?.colorPalette?.palette ?? "N/A"}
           </Text>
         </View>
 
-        <View style={styles.rowWrap}>
-          <Text style={styles.rowLabel}>Animation Duration</Text>
-          <Text style={styles.rowVal}>
-            {settings?.animation?.duration != null
-              ? `${settings.animation.duration} ms`
-              : "N/A"}
-          </Text>
-        </View>
+        
+        <View style={styles.rowWrap}> 
+  <Text style={styles.rowLabel}>Animation Duration</Text> 
+  <Text style={styles.rowVal}> 
+    {settings?.animation?.duration != null 
+      ? `${settings.animation.duration} ms` 
+      : "N/A"} 
+  </Text> 
+</View>
+        
+    
 
         <View style={styles.rowWrap}>
           <Text style={styles.rowLabel}>Image Quality</Text>
@@ -181,7 +231,9 @@ const BatteryAdaptiveDemoScreen = () => {
           <Text style={styles.rowLabel}>Image Cache</Text>
           <Text style={styles.rowVal}>
             {settings?.image != null
-              ? settings.image.cacheEnabled ? "ON" : "OFF"
+              ? settings.image.cacheEnabled
+                ? "ON"
+                : "OFF"
               : "N/A"}
           </Text>
         </View>
@@ -199,7 +251,9 @@ const BatteryAdaptiveDemoScreen = () => {
           <Text style={styles.rowLabel}>Video Autoplay</Text>
           <Text style={styles.rowVal}>
             {settings?.video != null
-              ? settings.video.autoPlay ? "ON" : "OFF"
+              ? settings.video.autoPlay
+                ? "ON"
+                : "OFF"
               : "N/A"}
           </Text>
         </View>
@@ -208,7 +262,9 @@ const BatteryAdaptiveDemoScreen = () => {
           <Text style={styles.rowLabel}>Shadows</Text>
           <Text style={styles.rowVal}>
             {settings?.rendering != null
-              ? settings.rendering.shadowsEnabled ? "ON" : "OFF"
+              ? settings.rendering.shadowsEnabled
+                ? "ON"
+                : "OFF"
               : "N/A"}
           </Text>
         </View>
@@ -217,7 +273,9 @@ const BatteryAdaptiveDemoScreen = () => {
           <Text style={styles.rowLabel}>Blur</Text>
           <Text style={styles.rowVal}>
             {settings?.rendering != null
-              ? settings.rendering.blurEnabled ? "ON" : "OFF"
+              ? settings.rendering.blurEnabled
+                ? "ON"
+                : "OFF"
               : "N/A"}
           </Text>
         </View>
@@ -226,7 +284,9 @@ const BatteryAdaptiveDemoScreen = () => {
           <Text style={styles.rowLabel}>Gradients</Text>
           <Text style={styles.rowVal}>
             {settings?.rendering != null
-              ? settings.rendering.gradientsEnabled ? "ON" : "OFF"
+              ? settings.rendering.gradientsEnabled
+                ? "ON"
+                : "OFF"
               : "N/A"}
           </Text>
         </View>
@@ -235,21 +295,27 @@ const BatteryAdaptiveDemoScreen = () => {
           <Text style={styles.rowLabel}>Complex Effects</Text>
           <Text style={styles.rowVal}>
             {settings?.rendering != null
-              ? settings.rendering.complexEffectsEnabled ? "ON" : "OFF"
+              ? settings.rendering.complexEffectsEnabled
+                ? "ON"
+                : "OFF"
               : "N/A"}
           </Text>
         </View>
 
         <View style={styles.rowWrap}>
           <Text style={styles.rowLabel}>API Polling</Text>
-          <Text style={styles.rowVal}>{msToSec(settings?.apiPolling?.interval)}</Text>
+          <Text style={styles.rowVal}>
+            {msToSec(settings?.apiPolling?.interval)}
+          </Text>
         </View>
 
         <View style={styles.rowWrap}>
           <Text style={styles.rowLabel}>Background Sync</Text>
           <Text style={styles.rowVal}>
             {settings?.backgroundTask != null
-              ? settings.backgroundTask.syncEnabled ? "ON" : "OFF"
+              ? settings.backgroundTask.syncEnabled
+                ? "ON"
+                : "OFF"
               : "N/A"}
           </Text>
         </View>
@@ -263,7 +329,102 @@ const BatteryAdaptiveDemoScreen = () => {
           </Text>
         </View>
       </View>
+           
+      <View style={styles.card}>
 
+<Text style={styles.sectionTitle}>
+Animation Preview
+</Text>
+
+
+<Animated.View
+style={[
+styles.animationBox,
+{
+transform:[
+{
+scale: animationValue.interpolate({
+inputRange:[0,1],
+outputRange:[0.8,1]
+})
+}
+]
+}
+]}
+/>
+
+
+<TouchableOpacity
+style={styles.refreshButton}
+onPress={runDemoAnimation}
+>
+
+<Text style={styles.actionButtonText}>
+Run Animation
+</Text>
+
+</TouchableOpacity>
+
+
+<Text style={styles.note}>
+Animation automatically disables in Ultra Saver mode.
+</Text>
+
+
+</View>
+
+
+
+           {/* ── Adaptive Image Preview ── */}
+           
+<View style={styles.card}>
+
+  <Text style={styles.sectionTitle}>
+    Adaptive Image Preview
+  </Text>
+
+
+  
+  
+  {
+mode !== "Ultra Saver" && (
+
+<AdaptiveImage
+
+source={require("../assets/images/auth-cover.jpg")}
+
+style={[
+
+styles.previewImage,
+
+mode === "Balanced" && styles.balancedImage,
+
+mode === "Power Saver" && styles.powerSaverImage,
+
+]}
+
+/>
+
+)
+}
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+
+  <Text style={styles.note}>
+    Image quality adapts according to Adaptive Battery Score.
+  </Text>
+
+
+</View>
       {/* ── Optimization Impact ── */}
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>Optimization Impact</Text>
@@ -284,8 +445,9 @@ const BatteryAdaptiveDemoScreen = () => {
         </View>
 
         <Text style={styles.note}>
-          These values represent adaptive configuration reductions relative to Performance mode.
-          They are NOT direct measurements of electrical energy consumed by the device.
+          These values represent adaptive configuration reductions relative to
+          Performance mode. They are NOT direct measurements of electrical
+          energy consumed by the device.
         </Text>
       </View>
 
@@ -294,7 +456,8 @@ const BatteryAdaptiveDemoScreen = () => {
         <Text style={styles.sectionTitle}>ABS Simulation</Text>
 
         <Text style={styles.note}>
-          Press a button to simulate an ABS score and observe the adaptive mode and settings.
+          Press a button to simulate an ABS score and observe the adaptive mode
+          and settings.
         </Text>
 
         <View style={styles.buttonGrid}>
@@ -303,19 +466,21 @@ const BatteryAdaptiveDemoScreen = () => {
               key={value}
               style={[
                 styles.absButton,
-                isSimulating && simulatedValue === value && styles.absButtonActive,
+                isSimulating &&
+                  simulatedValue === value &&
+                  styles.absButtonActive,
               ]}
               onPress={() => simulateABS(value)}
             >
               <Text style={styles.absButtonLabel}>ABS {value}</Text>
               <Text style={styles.absButtonMode}>
                 {value <= 25
-                  ? "Ultra Saver"
+                  ? "Performance"
                   : value <= 50
-                  ? "Power Saver"
-                  : value <= 75
-                  ? "Balanced"
-                  : "Performance"}
+                    ? "Balanced"
+                    : value <= 75
+                      ? "Power Saver"
+                      : "Ultra Saver"}
               </Text>
             </TouchableOpacity>
           ))}
@@ -458,6 +623,37 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     fontStyle: "italic",
   },
+animationBox:{
+  height:100,
+  borderRadius:16,
+  backgroundColor:"#1a6ebd",
+  alignItems:"center",
+  justifyContent:"center",
+  marginTop:10,
+},
+
+
+animationText:{
+  color:"#fff",
+  fontSize:18,
+  fontWeight:"800",
+},
+
+
+runAnimationButton:{
+  marginTop:14,
+  paddingVertical:12,
+  borderRadius:10,
+  backgroundColor:"#111",
+  alignItems:"center",
+},
+
+
+runAnimationText:{
+  color:"#fff",
+  fontSize:14,
+  fontWeight:"700",
+},
 
   // ABS simulation buttons
   buttonGrid: {
@@ -514,7 +710,22 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: "#111",
   },
+previewImage:{
+  width:"100%",
+  height:180,
+  borderRadius:12,
+  marginTop:10,
+},
 
+
+balancedImage:{
+  opacity:0.85,
+},
+
+
+powerSaverImage:{
+  opacity:0.60,
+},
   // Error
   errorCard: {
     backgroundColor: "#fff3f3",

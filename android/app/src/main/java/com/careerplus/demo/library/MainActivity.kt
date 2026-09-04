@@ -1,4 +1,4 @@
-package com.careerplus.demo
+package com.careerplus.demo.library
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

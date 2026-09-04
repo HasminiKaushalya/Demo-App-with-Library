@@ -3,27 +3,23 @@ import AppNavigator from './src/navigation/AppNavigator';
 
 import { AdaptiveProvider } from 'battery-aware-adaptive-ui';
 
-
 import AdaptivePermissionHandler from './src/components/AdaptivePermissionHandler';
 
 
 export default function App() {
 
-
-  // CHANGE THIS NUMBER DURING DEMO
-  // 20 = Performance
-  // 50 = Balanced
-  // 75 = Power Saver
-  // 90 = Ultra Saver
-
+  // Simulation modes:
+  // ABS 20 = Ultra Saver
+  // ABS 50 = Power Saver
+  // ABS 75 = Balanced
+  // ABS 90 = Normal
 
   return (
 
     <AdaptiveProvider>
 
-      {/* Checks Ultra Saver mode and asks user permission */}
+      {/* Handles permissions for Ultra Saver mode */}
       <AdaptivePermissionHandler />
-
 
       <AppNavigator />
 
